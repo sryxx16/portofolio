@@ -1,60 +1,62 @@
 import React from "react";
 import { portfolioData } from "../../data/portfolio";
+import TiltCard from "../animations/TiltCard";
+import AnimatedText from "../animations/AnimatedText";
+import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <section id="about" className="py-20 bg-white">
-      <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Placeholder Image */}
-          <div data-aos="fade-right">
-            <img
-              src="https://via.placeholder.com/500x600"
-              alt="About Me"
-              className="rounded-2xl shadow-lg w-full"
-            />
+    <section id="about" className="py-24  relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          {/* Foto dengan Efek Tilt 3D */}
+          <div data-aos="fade-right" className="relative group">
+            <div className="absolute inset-0 bg-cyan-500 rounded-3xl blur-[50px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+            <div className="h-[400px] md:h-[500px] w-full perspective-1000">
+              <TiltCard>
+                <div className="w-full h-full rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-4 overflow-hidden">
+                  <img
+                    src="https://via.placeholder.com/500x600" // Nanti ganti dengan foto Abang yg lain
+                    alt="About Me"
+                    className="rounded-2xl w-full h-full object-cover shadow-2xl filter brightness-90 group-hover:brightness-100 transition-all duration-500"
+                  />
+                </div>
+              </TiltCard>
+            </div>
           </div>
 
-          {/* About Text */}
+          {/* Bagian Teks About yang Sudah Bersih */}
           <div data-aos="fade-left">
-            <h6 className="text-cyan-400 uppercase tracking-widest text-sm font-bold mb-2">
-              Tentang Saya
+            <h6 className="text-cyan-400 tracking-[0.2em] text-sm font-bold mb-3 flex items-center gap-2">
+              <span className="w-8 h-[2px] bg-cyan-400"></span>
+              TENTANG SAYA
             </h6>
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Membangun Website yang Fungsional & Menarik
+
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-8 leading-tight">
+              Membangun Website yang{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                Fungsional & Menarik
+              </span>
             </h2>
 
-            <p className="text-gray-600 text-lg leading-relaxed mb-8">
-              {portfolioData.about}
-            </p>
-
-            {/* Tech Stack */}
-            <h5 className="text-xl font-bold text-gray-900 mb-6 mt-8">
-              Tech Stack & Tools
-            </h5>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              {portfolioData.skills.map((skill) => (
-                <div
-                  key={skill.name}
-                  className="bg-gray-100 rounded-2xl p-6 text-center hover:shadow-lg hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center"
-                >
-                  <img
-                    src={skill.logo}
-                    alt={skill.name}
-                    className="w-12 h-12 mb-3 object-contain"
-                  />
-                  <p className="font-bold text-sm text-gray-800">{skill.name}</p>
-                </div>
-              ))}
+            <div className="mb-12">
+              <AnimatedText
+                text={portfolioData.about}
+                className="text-gray-400 text-lg leading-relaxed"
+              />
             </div>
 
-            <a
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               href="#"
-              className="inline-block border-2 border-gray-900 text-gray-900 px-6 py-3 rounded-full font-bold hover:bg-gray-900 hover:text-white transition-all"
+              className="inline-flex items-center gap-3 border-2 border-cyan-500 text-cyan-400 px-8 py-4 rounded-2xl font-bold hover:bg-cyan-500 hover:text-gray-900 transition-colors duration-300 shadow-[0_0_20px_rgba(6,182,212,0.2)] hover:shadow-[0_0_30px_rgba(6,182,212,0.4)]"
             >
-              Download CV
-            </a>
+              <i className="bi bi-cloud-arrow-down-fill text-xl"></i> Download
+              CV
+            </motion.a>
           </div>
         </div>
       </div>

@@ -1,32 +1,34 @@
-import React, { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import React from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/sections/Hero";
 import About from "./components/sections/About";
+import TechStack from "./components/sections/TechStack";
 import Projects from "./components/sections/Projects";
 import Certificates from "./components/sections/Certificates";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/Footer";
 
-function App() {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true
-    });
-  }, []);
+// 1. IMPORT BACKGROUND ANIMASI
+import AnimatedBackground from "./components/animations/AnimatedBackground";
 
+function App() {
   return (
-    <main className="bg-white">
+    <div className="relative text-white antialiased">
+      {/* 2. PASANG BACKGROUND DI SINI (Paling Atas) */}
+      <AnimatedBackground />
+
+      {/* Konten Website Abang */}
       <Navbar />
-      <Hero />
-      <About />
-      <Projects />
-      <Certificates />
-      <Contact />
+      <main>
+        <Hero />
+        <About />
+        <TechStack />
+        <Projects />
+        <Certificates />
+        <Contact />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
 

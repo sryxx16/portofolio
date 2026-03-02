@@ -6,18 +6,15 @@ export default function Contact() {
     name: "",
     email: "",
     subject: "",
-    message: ""
+    message: "",
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    // Implement form submission logic here
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
@@ -26,147 +23,147 @@ export default function Contact() {
       icon: "bi-envelope-fill",
       label: "Email",
       value: portfolioData.contacts.email,
-      link: `mailto:${portfolioData.contacts.email}`
+      link: `mailto:${portfolioData.contacts.email}`,
     },
     {
       icon: "bi-whatsapp",
       label: "WhatsApp",
       value: portfolioData.contacts.whatsapp,
-      link: `https://wa.me/${portfolioData.contacts.whatsapp.replace(/\D/g, "")}`
+      link: `https://wa.me/${portfolioData.contacts.whatsapp.replace(/\D/g, "")}`,
     },
     {
       icon: "bi-geo-alt-fill",
       label: "Lokasi",
       value: portfolioData.contacts.location,
-      link: "#"
-    }
+      link: "#",
+    },
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-6">
-        {/* Section Header */}
+    <section id="contact" className="py-24  relative">
+      <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16" data-aos="fade-up">
-          <h6 className="text-cyan-400 uppercase tracking-widest text-sm font-bold mb-2">
-            Let's Connect
+          <h6 className="text-cyan-400 tracking-[0.2em] text-sm font-bold mb-3 flex items-center justify-center gap-2">
+            <span className="w-8 h-[2px] bg-cyan-400"></span>
+            LET'S CONNECT
+            <span className="w-8 h-[2px] bg-cyan-400"></span>
           </h6>
-          <h2 className="text-4xl font-bold text-gray-900">Hubungi Saya</h2>
+          <h2 className="text-4xl md:text-5xl font-black text-white">
+            Hubungi Saya
+          </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <div
-            className="bg-white rounded-3xl shadow-md p-8 md:p-12"
-            data-aos="fade-right"
-            data-aos-delay="100"
-          >
-            <h4 className="text-2xl font-bold text-gray-900 mb-6">
-              Mari Bekerja Sama!
-            </h4>
-            <p className="text-gray-600 mb-8 leading-relaxed">
-              Saya selalu terbuka untuk mendiskusikan proyek baru, ide kreatif,
-              atau tawaran pekerjaan seputar teknologi web.
-            </p>
+        <div className="grid md:grid-cols-5 gap-12">
+          {/* Contact Info (Lebar 2 kolom) */}
+          <div className="md:col-span-2 space-y-8" data-aos="fade-right">
+            <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-2xl">
+              <h4 className="text-2xl font-bold text-white mb-4">
+                Mari Bekerja Sama!
+              </h4>
+              <p className="text-gray-400 mb-10 leading-relaxed">
+                Saya selalu terbuka untuk mendiskusikan proyek baru, ide
+                kreatif, atau tawaran pekerjaan seputar teknologi web.
+              </p>
 
-            {/* Contact Items */}
-            <div className="space-y-6">
-              {contacts.map((contact, idx) => (
-                <a
-                  key={idx}
-                  href={contact.link}
-                  className="flex items-center gap-4 hover:translate-x-2 transition-transform"
-                >
-                  <div className="bg-cyan-400 text-gray-900 w-12 h-12 rounded-full flex items-center justify-center text-xl flex-shrink-0">
-                    <i className={`bi ${contact.icon}`}></i>
-                  </div>
-                  <div>
-                    <h6 className="font-bold text-gray-900">{contact.label}</h6>
-                    <p className="text-gray-600 text-sm">{contact.value}</p>
-                  </div>
-                </a>
-              ))}
+              <div className="space-y-8">
+                {contacts.map((contact, idx) => (
+                  <a
+                    key={idx}
+                    href={contact.link}
+                    className="flex items-center gap-5 group"
+                  >
+                    <div className="bg-white/5 border border-white/10 text-cyan-400 w-14 h-14 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-cyan-500 group-hover:text-gray-900 group-hover:scale-110 transition-all shadow-[0_0_15px_rgba(6,182,212,0)] group-hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]">
+                      <i className={`bi ${contact.icon}`}></i>
+                    </div>
+                    <div>
+                      <h6 className="font-bold text-gray-300 group-hover:text-cyan-400 transition-colors">
+                        {contact.label}
+                      </h6>
+                      <p className="text-gray-500 text-sm mt-1">
+                        {contact.value}
+                      </p>
+                    </div>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div
-            className="bg-white rounded-3xl shadow-md p-8 md:p-12"
-            data-aos="fade-left"
-            data-aos-delay="200"
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name Input */}
-              <div>
-                <label className="block font-bold text-gray-900 mb-2">
-                  Nama Lengkap
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Masukkan nama..."
-                  className="w-full bg-gray-100 border-0 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-500 outline-none focus:ring-2 focus:ring-cyan-400 transition"
-                  required
-                />
-              </div>
+          {/* Contact Form (Lebar 3 kolom) */}
+          <div className="md:col-span-3" data-aos="fade-left">
+            <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-[2rem] p-8 md:p-12 shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-[80px] pointer-events-none"></div>
 
-              {/* Email Input */}
-              <div>
-                <label className="block font-bold text-gray-900 mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Masukkan email..."
-                  className="w-full bg-gray-100 border-0 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-500 outline-none focus:ring-2 focus:ring-cyan-400 transition"
-                  required
-                />
-              </div>
+              <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-bold text-gray-300 mb-2">
+                      Nama Lengkap
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Masukkan nama..."
+                      className="w-full bg-[#0a0f1d]/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-600 outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-gray-300 mb-2">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="Masukkan email..."
+                      className="w-full bg-[#0a0f1d]/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-600 outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
+                      required
+                    />
+                  </div>
+                </div>
 
-              {/* Subject Input */}
-              <div>
-                <label className="block font-bold text-gray-900 mb-2">
-                  Subjek
-                </label>
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  placeholder="Hal yang ingin didiskusikan..."
-                  className="w-full bg-gray-100 border-0 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-500 outline-none focus:ring-2 focus:ring-cyan-400 transition"
-                  required
-                />
-              </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-300 mb-2">
+                    Subjek
+                  </label>
+                  <input
+                    type="text"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    placeholder="Hal yang ingin didiskusikan..."
+                    className="w-full bg-[#0a0f1d]/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-600 outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
+                    required
+                  />
+                </div>
 
-              {/* Message Textarea */}
-              <div>
-                <label className="block font-bold text-gray-900 mb-2">
-                  Pesan
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Tulis pesan Anda di sini..."
-                  rows="4"
-                  className="w-full bg-gray-100 border-0 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-500 outline-none focus:ring-2 focus:ring-cyan-400 transition resize-none"
-                  required
-                ></textarea>
-              </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-300 mb-2">
+                    Pesan
+                  </label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Tulis pesan Anda di sini..."
+                    rows="5"
+                    className="w-full bg-[#0a0f1d]/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-600 outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all resize-none"
+                    required
+                  ></textarea>
+                </div>
 
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-3 rounded-full flex items-center justify-center gap-2 transition-all mt-2"
-              >
-                <i className="bi bi-send-fill"></i> Kirim Pesan
-              </button>
-            </form>
+                <button
+                  type="submit"
+                  className="w-full bg-cyan-500 hover:bg-cyan-400 text-gray-900 font-black py-4 rounded-xl flex items-center justify-center gap-3 transition-all mt-4 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] hover:-translate-y-1 text-lg uppercase tracking-wider"
+                >
+                  Kirim Pesan <i className="bi bi-send-fill"></i>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
