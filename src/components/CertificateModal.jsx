@@ -2,9 +2,20 @@ import React, { useState, useEffect } from "react";
 
 export default function CertificateModal({ cert, onClose }) {
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
-  const images = cert.images || [cert.image];
+  const images =
+    cert.images && cert.images.length > 0 ? cert.images : [cert.image];
 
-  // Disable body scroll ketika modal terbuka
+  // Fungsi Navigasi
+  const handleNext = (e) => {
+    e.stopPropagation();
+    setCurrentImageIdx((prev) => (prev + 1) % images.length);
+  };
+
+  const handlePrev = (e) => {
+    e.stopPropagation();
+    setCurrentImageIdx((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -14,69 +25,77 @@ export default function CertificateModal({ cert, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center"
+      className="fixed inset-0 bg-black/95 z-[999] flex items-center justify-center p-2 md:p-10"
       onClick={onClose}
     >
       <div
         className="relative w-full h-full flex flex-col items-center justify-center"
-        onClick={e => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
+        {/* Tombol Close Lebih Jelas */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-white text-4xl hover:text-red-500 transition z-10 bg-black/50 hover:bg-black/80 rounded-full w-12 h-12 flex items-center justify-center"
-          aria-label="Close"
+          className="absolute top-0 right-0 m-4 text-white text-3xl hover:text-red-500 transition z-[1000] bg-white/10 w-12 h-12 rounded-full flex items-center justify-center"
         >
           ✕
         </button>
 
-        {/* Image and Info - scrollable if needed */}
-        <div className="w-full h-full flex flex-col items-center justify-center overflow-auto pt-16 pb-8">
-          <div className="flex flex-col items-center w-full max-w-5xl mx-auto">
-            {/* Image: fit to width, allow vertical scroll for tall images */}
-            <div className="w-full flex justify-center items-center">
-              <img
-                src={images[currentImageIdx]}
-                alt={`${cert.title} ${currentImageIdx + 1}`}
-                className="max-w-full max-h-[90vh] object-contain object-top shadow-2xl rounded-xl border border-gray-700 bg-black"
-                style={{ display: 'block' }}
-              />
-            </div>
-            {/* Navigation Buttons */}
+        {/* Container Utama Gambar */}
+        <div className="relative w-full h-full flex flex-col items-center justify-center">
+          {/* Gambar: Menggunakan max-h-[85vh] agar lebih besar dari sebelumnya */}
+          <div className="relative flex items-center justify-center w-full h-full max-h-[85vh]">
+            <img
+              src={images[currentImageIdx]}
+              alt={cert.title}
+              className="max-w-full max-h-full object-contain shadow-2xl rounded-lg"
+            />
+
+            {/* Navigasi Panah (Kiri & Kanan) */}
             {images.length > 1 && (
-              <div className="flex items-center justify-center gap-4 mt-4">
+              <>
                 <button
                   onClick={handlePrev}
-                  className="bg-white/20 hover:bg-white/40 text-white text-3xl w-12 h-12 flex items-center justify-center rounded-full transition"
+                  className="absolute left-2 md:left-5 bg-black/40 hover:bg-cyan-500 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all text-2xl"
                 >
                   ‹
                 </button>
-                <div className="flex gap-2">
-                  {images.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentImageIdx(idx)}
-                      className={`h-2 rounded-full transition ${
-                        idx === currentImageIdx ? "bg-cyan-400 w-8" : "bg-white/50 w-2"
-                      }`}
-                    />
-                  ))}
-                </div>
                 <button
                   onClick={handleNext}
-                  className="bg-white/20 hover:bg-white/40 text-white text-3xl w-12 h-12 flex items-center justify-center rounded-full transition"
+                  className="absolute right-2 md:right-5 bg-black/40 hover:bg-cyan-500 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all text-2xl"
                 >
                   ›
                 </button>
-              </div>
+              </>
             )}
-            {/* Certificate Info */}
-            <div className="w-full max-w-2xl mx-auto mt-6 text-center bg-black/70 rounded-xl p-6 border border-gray-700">
-              <h3 className="text-2xl font-bold text-white mb-2">{cert.title}</h3>
-              <p className="text-gray-300">{cert.issuer}</p>
-              <p className="text-cyan-400 font-bold text-lg mt-2">{cert.year}</p>
-            </div>
           </div>
+
+          {/* Info Sertifikat di Bawah Gambar */}
+          <div className="w-full max-w-3xl text-center mt-4 px-4">
+            <h3 className="text-xl md:text-3xl font-bold text-white leading-tight">
+              {cert.title}
+            </h3>
+            <p className="text-gray-400 text-sm md:text-lg mt-1">
+              {cert.issuer} |{" "}
+              <span className="text-cyan-400 font-bold">{cert.year}</span>
+            </p>
+          </div>
+
+          {/* Indikator Titik */}
+          {images.length > 1 && (
+            <div className="flex gap-2 mt-4">
+              {images.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentImageIdx(idx)}
+                  className={`h-1.5 transition-all rounded-full ${
+                    idx === currentImageIdx
+                      ? "bg-cyan-400 w-8"
+                      : "bg-white/30 w-3"
+                  }`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
