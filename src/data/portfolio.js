@@ -102,6 +102,8 @@ export const portfolioData = {
       title: "Sertifikat HKI Web Jasa Titip",
       issuer: "IT Bootcamp UBSI",
       year: "2025",
+      description:
+        "Penghargaan Hak Kekayaan Intelektual (HKI) atas pengembangan Sistem Informasi Layanan Jasa Titip berbasis Web. Mengamankan hak cipta dari arsitektur perangkat lunak dan desain UI/UX yang telah dibangun.",
       image:
         "/assets/images/sertif/EC002025106321_sertifikat_2025-08-07-1_page-0001.jpg",
       images: [
@@ -115,6 +117,8 @@ export const portfolioData = {
       title: "PCAP : Programing Essentials in Python",
       issuer: "CISCO",
       year: "2024",
+      description:
+        "Sertifikasi resmi dari CISCO yang memvalidasi pemahaman mendalam tentang konsep pemrograman dasar hingga menengah menggunakan bahasa Python, termasuk struktur data, algoritma, dan OOP.",
       image: "/assets/images/sertif/17230348_page-0001.jpg",
       type: "single",
     },
@@ -123,6 +127,8 @@ export const portfolioData = {
       title: "Fundamental Front-End Web",
       issuer: "Coding Studio",
       year: "2024",
+      description:
+        "Sertifikat kelulusan dalam membangun antarmuka web interaktif. Menguasai fundamental HTML5, CSS3, JavaScript modern, serta prinsip desain responsif untuk berbagai ukuran layar.",
       image: "/assets/images/sertif/codingstudio.png",
       type: "single",
     },
@@ -131,6 +137,8 @@ export const portfolioData = {
       title: "IT Bootcamp Software Dev",
       issuer: "IT Bootcamp UBSI",
       year: "2025",
+      description:
+        "Menyelesaikan program intensif Software Development. Fokus pada praktik pembuatan aplikasi nyata dari tahap perencanaan, coding, hingga deployment menggunakan teknologi web masa kini.",
       image:
         "/assets/images/sertif/SertifikatDigitalmhs_20251110_002358_page-0001.jpg",
       images: [
