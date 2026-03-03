@@ -149,11 +149,11 @@ export const portfolioData = {
   ],
 
   contacts: {
-    email: "email.lo@gmail.com",
-    whatsapp: "+62 812 3456 7890",
+    email: "suryadaffaf@gmail.com",
+    whatsapp: "+62 857 1587 9337",
     location: "Cibinong, Indonesia",
-    github: "#",
-    linkedin: "#",
-    instagram: "#",
+    github: "https://github.com/sryxx16",
+    linkedin: "www.linkedin.com/in/surya-daffa-fauzi-khoerudin",
+    instagram: "https://www.instagram.com/_sur.16/",
   },
 };

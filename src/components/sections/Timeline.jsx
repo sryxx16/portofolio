@@ -10,16 +10,24 @@ export default function Timeline() {
       title: "Mahasiswa IT",
       company: "Universitas Bina Sarana Informatika (UBSI)",
       description:
-        "Fokus mendalami pengembangan perangkat lunak, algoritma, dan rekayasa web.",
+        "Berfokus pada pengembangan web dan mobile application dengan pendekatan problem solving dan clean code. Terbiasa membangun sistem CRUD, autentikasi, serta perancangan database relational menggunakan Laravel, JavaScript, dan Kotlin.",
       icon: "bi-mortarboard-fill",
     },
     {
-      year: "2023",
-      title: "Sertifikasi Cybersecurity",
-      company: "Cisco Networking Academy",
+      year: "2025",
+      title: "3rd Place – IT Bootcamp Software Development for Industry",
+      company: "Universitas Bina Sarana Informatika (UBSI)",
       description:
-        "Memahami dasar keamanan jaringan, ancaman siber, dan cara mitigasi yang efektif.",
+        "Mengikuti bootcamp intensif pengembangan perangkat lunak yang berfokus pada implementasi sistem berbasis industri. Pada kegiatan ini, saya mengembangkan website Jasa Titip Jastip menggunakan Laravel dengan fitur autentikasi, manajemen produk, sistem pemesanan, dan pengelolaan database terstruktur. Project tersebut berhasil meraih Juara 3 dan memperoleh Hak Kekayaan Intelektual HKI sebagai bentuk apresiasi atas inovasi dan implementasi sistem yang dibangun..",
       icon: "bi-shield-lock-fill",
+    },
+    {
+      year: "2025",
+      title: "Frontend Developer – E-Commerce Project",
+      company: "Jakarta Scooter Shop",
+      description:
+        "Berkontribusi sebagai Frontend Developer dalam pengembangan website e-commerce untuk Jakarta Scooter Shop. Bertanggung jawab pada implementasi tampilan produk, sistem pagination, integrasi API, serta optimalisasi user interface agar responsif dan user-friendly. Proyek ini telah live dan digunakan secara aktif oleh client.",
+      icon: "bi-cart-fill",
     },
     {
       year: "2022 - 2023",
