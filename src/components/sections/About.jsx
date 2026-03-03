@@ -3,7 +3,6 @@ import { portfolioData } from "../../data/portfolio";
 import TiltCard from "../animations/TiltCard";
 import AnimatedText from "../animations/AnimatedText";
 import { motion } from "framer-motion";
-
 export default function About() {
   return (
     <section id="about" className="py-24  relative overflow-hidden">
@@ -18,9 +17,9 @@ export default function About() {
               <TiltCard>
                 <div className="w-full h-full rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-4 overflow-hidden">
                   <img
-                    src="https://via.placeholder.com/500x600" // Nanti ganti dengan foto Abang yg lain
+                    src={portfolioData.profileImage} // Nanti ganti dengan foto Abang yg lain
                     alt="About Me"
-                    className="rounded-2xl w-full h-full object-cover shadow-2xl filter brightness-90 group-hover:brightness-100 transition-all duration-500"
+                    className="rounded-2xl w-full h-full object-cover bg-white/5 shadow-2xl transition-all duration-500"
                   />
                 </div>
               </TiltCard>
