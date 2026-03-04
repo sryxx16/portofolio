@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const styles = {
   wrapper: {
@@ -28,10 +28,14 @@ export default function DecryptedText({
   characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+",
   className = "",
   parentClassName = "",
-  encryptedClassName = "",
+  encryptedClassName,
   animateOn = "hover",
+  delay = 0,
   ...props
 }) {
+  const safeEncryptedClassName =
+    encryptedClassName !== undefined ? encryptedClassName : className;
+
   const [displayText, setDisplayText] = useState(text);
   const [isHovering, setIsHovering] = useState(false);
   const [isScrambling, setIsScrambling] = useState(false);
@@ -170,13 +174,23 @@ export default function DecryptedText({
   ]);
 
   useEffect(() => {
+    // PERBAIKAN 1: Tambahan logika "mount" agar langsung jalan tanpa terhalang AOS
+    if (animateOn === "mount") {
+      const timer = setTimeout(() => {
+        setIsHovering(true);
+      }, delay);
+      return () => clearTimeout(timer);
+    }
+
     if (animateOn !== "view" && animateOn !== "both") return;
 
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && !hasAnimated) {
-          setIsHovering(true);
           setHasAnimated(true);
+          setTimeout(() => {
+            setIsHovering(true);
+          }, delay);
         }
       });
     };
@@ -201,7 +215,7 @@ export default function DecryptedText({
         observer.unobserve(currentRef);
       }
     };
-  }, [animateOn, hasAnimated]);
+  }, [animateOn, hasAnimated, delay]);
 
   const hoverProps =
     animateOn === "hover" || animateOn === "both"
@@ -229,7 +243,7 @@ export default function DecryptedText({
           return (
             <span
               key={index}
-              className={isRevealedOrDone ? className : encryptedClassName}
+              className={isRevealedOrDone ? className : safeEncryptedClassName}
             >
               {char}
             </span>

@@ -17,6 +17,24 @@ export const portfolioData = {
       color: "text-red-600",
     },
     {
+      name: "PHP",
+      icon: "bi-filetype-php",
+      logo: "https://cdn.simpleicons.org/php",
+      color: "text-indigo-400",
+    },
+    {
+      name: "React",
+      icon: "bi-code-slash",
+      logo: "https://cdn.simpleicons.org/react",
+      color: "text-cyan-400",
+    },
+    {
+      name: "Tailwind CSS",
+      icon: "bi-palette",
+      logo: "https://cdn.simpleicons.org/tailwindcss",
+      color: "text-cyan-400",
+    },
+    {
       name: "HTML5",
       icon: "bi-filetype-html",
       logo: "https://cdn.simpleicons.org/html5",
@@ -35,6 +53,12 @@ export const portfolioData = {
       color: "text-yellow-500",
     },
     {
+      name: "Python",
+      icon: "bi-filetype-py",
+      logo: "https://cdn.simpleicons.org/python",
+      color: "text-yellow-400",
+    },
+    {
       name: "MySQL",
       icon: "bi-database-check",
       logo: "https://cdn.simpleicons.org/mysql",
@@ -47,17 +71,28 @@ export const portfolioData = {
       color: "text-green-600",
     },
     {
-      name: "Docker",
-      icon: "bi-box-seam",
-      logo: "https://cdn.simpleicons.org/docker",
-      color: "text-blue-400",
+      name: "Node.js",
+      icon: "bi-hdd-network",
+      logo: "https://cdn.simpleicons.org/nodedotjs",
+      color: "text-green-500",
+    },
+    {
+      name: "Git",
+      icon: "bi-git",
+      logo: "https://cdn.simpleicons.org/git",
+      color: "text-orange-500",
     },
     {
       name: "GitHub",
       icon: "bi-github",
-      // Khusus GitHub kita kasih /white belakangnya biar putih di background gelap
       logo: "https://cdn.simpleicons.org/github/white",
       color: "text-white",
+    },
+    {
+      name: "Docker",
+      icon: "bi-box-seam",
+      logo: "https://cdn.simpleicons.org/docker",
+      color: "text-blue-400",
     },
   ],
 

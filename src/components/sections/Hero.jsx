@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { portfolioData } from "../../data/portfolio";
 import TiltCard from "../animations/TiltCard";
 import AnimatedText from "../animations/AnimatedText";
-import DecryptedText from "../animations/DecryptedText";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Hero() {
   const roles = ["Web Developer", "Mobile Programming", "Network Engineer"];
+
+  // State untuk menjejak indeks role yang sedang dipaparkan
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+
+  // useEffect untuk menukar role setiap 3 saat secara automatik
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentRoleIndex((prevIndex) => (prevIndex + 1) % roles.length);
+    }, 3000); // 3000ms = 3 saat
+
+    return () => clearInterval(interval);
+  }, [roles.length]);
 
   return (
     <section
@@ -31,25 +42,25 @@ export default function Hero() {
                   className="text-3xl md:text-6xl font-black text-white mb-6 leading-tight"
                 />
 
-                {/* ANIMASI DECRYPTED TEXT UNTUK ROLE */}
-                <div className="flex flex-wrap gap-x-4 gap-y-2 mb-8">
-                  {roles.map((role, i) => (
-                    <div key={i} className="flex items-center">
-                      <DecryptedText
-                        text={role}
-                        speed={100}
-                        maxIterations={20}
-                        sequential={true}
-                        revealDirection="start"
-                        animateOn="view"
-                        className="text-cyan-400 font-mono text-xs md:text-base font-medium"
-                        parentClassName="inline-block"
-                      />
-                      {i !== roles.length - 1 && (
-                        <span className="ml-4 h-4 border-r border-white/20 hidden md:block"></span>
-                      )}
-                    </div>
-                  ))}
+                {/* ANIMASI TEKS BERTERUSAN (ROTATING TEXT) */}
+                <div className="flex items-center gap-3 mb-8 h-8 md:h-10">
+                  <span className="text-gray-400 font-mono text-sm md:text-base">
+                    Specialized in:
+                  </span>
+                  <div className="relative overflow-hidden flex items-center h-full min-w-[200px]">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={currentRoleIndex}
+                        initial={{ y: 25, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -25, opacity: 0 }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                        className="text-cyan-400 font-mono text-sm md:text-base font-bold whitespace-nowrap absolute"
+                      >
+                        {roles[currentRoleIndex]}
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
                 </div>
 
                 <AnimatedText
@@ -121,12 +132,10 @@ export default function Hero() {
             data-aos="fade-left"
           >
             <div className="relative group flex justify-center w-full max-w-sm">
-              {/* Tali Lanyard - Sembunyi di HP kecil biar tidak berantakan */}
               <div className="hidden sm:block absolute -top-32 left-1/2 -translate-x-1/2 w-[3px] h-32 bg-gradient-to-b from-transparent via-cyan-500/50 to-cyan-500 z-0"></div>
 
               <div className="absolute inset-0 bg-cyan-500 rounded-2xl blur-[60px] opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
 
-              {/* Ukuran kartu menyesuaikan layar (w-64 di HP, w-80 di Laptop) */}
               <div className="relative w-64 md:w-80 h-[400px] md:h-[450px] perspective-1000 z-10 pt-2">
                 <TiltCard>
                   <div className="w-full h-full bg-[#020617] rounded-2xl border border-white/20 p-4 md:p-5 flex flex-col items-center justify-between shadow-2xl relative overflow-hidden">
@@ -138,11 +147,10 @@ export default function Hero() {
                       <i className="bi bi-qr-code text-white/40 text-xl md:text-2xl"></i>
                     </div>
 
-                    {/* Foto Profil Menyesuaikan (w-36 di HP, w-48 di Laptop) */}
                     <div className="relative w-36 h-36 md:w-48 md:h-48 rounded-full z-10 border-4 border-[#0a0f1d] shadow-[0_0_30px_rgba(6,182,212,0.4)] mb-4">
                       <div className="w-full h-full rounded-full overflow-hidden bg-[#0a0f1d] relative">
                         <img
-                          src={portfolioData.profileImage}
+                          src={portfolioData.profileImage1}
                           alt={portfolioData.name}
                           className="w-full h-full object-cover object-top scale-105 group-hover:scale-115 transition-transform duration-700"
                         />
