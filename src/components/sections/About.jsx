@@ -15,7 +15,7 @@ export default function About() {
             <div className="absolute inset-0 bg-cyan-500 rounded-3xl blur-[50px] opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
             <div className="h-[400px] md:h-[500px] w-full perspective-1000">
               <TiltCard>
-                <div className="w-full h-full rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-4 overflow-hidden">
+                <div className="w-full h-full rounded-3xl bg-[#0a192f] p-4 overflow-hidden border border-white/5">
                   <img
                     src={portfolioData.profileImage} // Nanti ganti dengan foto Abang yg lain
                     alt="About Me"
