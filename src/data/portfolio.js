@@ -132,6 +132,26 @@ export const portfolioData = {
       github: "#",
       type: "landing",
     },
+    {
+      id: 4,
+      title: "Aplikasi Money Tracking",
+      description:
+        "Aplikasi ini dirancang untuk membantu pengguna melacak arus kas mereka sehari-hari. Pengguna dapat mencatat setiap uang yang masuk (pemasukan) dan uang yang keluar (pengeluaran) beserta kategorinya.",
+      image: "/assets/images/fotoprojects/money-tracking/mt1.jpeg",
+      images: [
+        "/assets/images/fotoprojects/money-tracking/mt1.jpeg",
+        "/assets/images/fotoprojects/money-tracking/mt2.jpeg",
+        "/assets/images/fotoprojects/money-tracking/mt3.jpeg",
+        "/assets/images/fotoprojects/money-tracking/mt4.jpeg",
+        "/assets/images/fotoprojects/money-tracking/mt5.jpeg",
+        "/assets/images/fotoprojects/money-tracking/mt6.jpeg",
+        "/assets/images/fotoprojects/money-tracking/mt7.jpeg",
+        "/assets/images/fotoprojects/money-tracking/mt8.jpeg",
+      ],
+      link: null,
+      github: "https://github.com/sryxx16/money-tracking.git",
+      type: "mobileapp",
+    },
   ],
 
   certificates: [

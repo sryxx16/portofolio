@@ -5,6 +5,9 @@ export default function ProjectModal({ project, onClose }) {
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
   const images = project.images || [project.image];
 
+  // === UBAHAN 1: Kita ganti jadi isZoomed (true/false) saja ===
+  const [isZoomed, setIsZoomed] = useState(false);
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -48,12 +51,15 @@ export default function ProjectModal({ project, onClose }) {
           <div className="relative w-full h-[45vh] md:h-[60vh] bg-[#060913] flex items-center justify-center overflow-hidden border-b border-white/5">
             <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(#06b6d4_1px,transparent_1px),linear-gradient(90deg,#06b6d4_1px,transparent_1px)] [background-size:40px_40px]"></div>
 
+            {/* Gambar Utama */}
             <img
               src={images[currentImageIdx]}
               alt={`${project.title} ${currentImageIdx + 1}`}
-              className="w-full h-full object-cover opacity-90 relative z-10"
+              onClick={() => setIsZoomed(true)} // === UBAHAN 2: Set ke true saat diklik ===
+              className="w-full h-full object-cover opacity-90 relative z-10 cursor-pointer hover:opacity-100 transition-opacity"
             />
-            {/* Gradient bayangan di bawah gambar biar teks bawahnya nyatu */}
+
+            {/* Gradient bayangan di bawah gambar */}
             <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0d1326]/90 to-transparent z-10"></div>
 
             {images.length > 1 && (
@@ -74,7 +80,10 @@ export default function ProjectModal({ project, onClose }) {
                   {images.map((_, idx) => (
                     <button
                       key={idx}
-                      onClick={() => setCurrentImageIdx(idx)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentImageIdx(idx);
+                      }}
                       className={`h-2 rounded-full transition-all ${idx === currentImageIdx ? "bg-cyan-400 w-8" : "bg-white/30 w-2 hover:bg-white/60"}`}
                     />
                   ))}
@@ -124,6 +133,73 @@ export default function ProjectModal({ project, onClose }) {
           </div>
         </motion.div>
       </div>
+
+      {/* === UBAHAN 3: Overlay Full Screen untuk Gambar Zoom === */}
+      {isZoomed && (
+        <div
+          className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 backdrop-blur-md p-4 md:p-8"
+          onClick={() => setIsZoomed(false)} // Tutup saat overlay diklik
+        >
+          {/* Tombol Close untuk Zoom */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsZoomed(false);
+            }}
+            className="absolute top-4 right-4 md:top-8 md:right-8 text-white hover:text-cyan-400 z-50 bg-white/10 hover:bg-white/20 border border-white/10 rounded-full w-12 h-12 flex items-center justify-center transition-colors"
+          >
+            ✕
+          </button>
+
+          {/* Tombol Prev/Next di dalam Zoom */}
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={handlePrev}
+                className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-cyan-500 text-white hover:text-gray-900 border border-white/20 text-3xl w-14 h-14 flex items-center justify-center rounded-full transition-all z-50 backdrop-blur-md"
+              >
+                ‹
+              </button>
+              <button
+                onClick={handleNext}
+                className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-cyan-500 text-white hover:text-gray-900 border border-white/20 text-3xl w-14 h-14 flex items-center justify-center rounded-full transition-all z-50 backdrop-blur-md"
+              >
+                ›
+              </button>
+
+              {/* Indikator Titik Bawah di Mode Zoom (Opsional) */}
+              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-50 bg-black/50 px-4 py-2 rounded-full backdrop-blur-md border border-white/10">
+                {images.map((_, idx) => (
+                  <button
+                    key={`zoom-dot-${idx}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCurrentImageIdx(idx);
+                    }}
+                    className={`h-2 rounded-full transition-all ${idx === currentImageIdx ? "bg-cyan-400 w-8" : "bg-white/30 w-2 hover:bg-white/60"}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* Gambar Full Size */}
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={currentImageIdx} // Penting: Biar animasinya kerasa pas digeser
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              src={images[currentImageIdx]}
+              alt="Zoomed Project"
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()} // Supaya klik di gambar ga nutup overlay
+            />
+          </AnimatePresence>
+        </div>
+      )}
+      {/* ==================================================================== */}
     </AnimatePresence>
   );
 }
