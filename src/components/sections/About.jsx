@@ -92,9 +92,9 @@ export default function About() {
             </h6>
 
             <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
-              Membangun Website yang{" "}
+              Web Development &{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-                Fungsional & Menarik
+                Software Engineering
               </span>
             </h2>
 

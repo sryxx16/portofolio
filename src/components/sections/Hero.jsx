@@ -5,7 +5,12 @@ import AnimatedText from "../animations/AnimatedText";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Hero() {
-  const roles = ["Web Developer", "Mobile Programming", "Network Engineer"];
+  const roles = [
+    "Web Developer",
+    "frontend developer",
+    "backend developer",
+    "fullstack developer",
+  ];
 
   // State untuk menjejak indeks role yang sedang dipaparkan
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);

@@ -1,10 +1,10 @@
 export const portfolioData = {
   name: "SURYA DAFFA FAUZI KHOERUDIN",
-  title: "Web Developer | Mobile Programming | Network Engineer",
+  title: "Web Developer | Mobile Programming",
   description:
-    "Saya adalah mahasiswa IT asal Cibinong yang passionate dalam merancang dan membangun solusi digital. Terbiasa menggunakan Laravel, JavaScript, dan teknologi modern lainnya untuk menciptakan website yang fungsional dan rapi.",
+    "Mahasiswa IT semester 6 yang berfokus pada pengembangan web dan teknologi modern. Berpengalaman membangun berbagai aplikasi seperti ecommerce dan platform jasa menggunakan Laravel, JavaScript, dan framework modern lainnya. Terbiasa bekerja dalam tim serta memiliki ketertarikan tinggi untuk terus belajar dan mengembangkan solusi digital yang efisien dan scalable.",
   about:
-    "Saya adalah mahasiswa IT yang memiliki ketertarikan di bidang Web Development dan Software Development. Terbiasa membangun aplikasi berbasis JavaScript dan Laravel, serta memahami konsep dasar backend, database, dan logika aplikasi. Saya memiliki semangat belajar tinggi, terbiasa mengerjakan project secara mandiri, dan terus mengembangkan kemampuan melalui praktik langsung. Saat ini, saya terbuka untuk freelance, kerja remote, maupun kolaborasi project, dengan fokus pada solusi yang fungsional, rapi, dan mudah dikembangkan.",
+    " Saya adalah mahasiswa IT semester 6 yang memiliki ketertarikan di bidang Web Development dan Software Development. Terbiasa membangun aplikasi web menggunakan Laravel dan JavaScript serta memahami konsep dasar backend, database, dan logika aplikasi. Saya lebih sering mengembangkan kemampuan melalui pembuatan project nyata, baik secara mandiri maupun dalam tim, seperti platform ecommerce dan sistem jasa titip. Saat ini saya terus belajar dan terbuka untuk freelance, remote work, maupun kolaborasi project dalam membangun solusi digital yang fungsional dan mudah dikembangkan. Saya percaya cara terbaik belajar programming adalah dengan membangun project nyata dan terus mengembangkan solusi dari masalah yang ada.",
 
   profileImage1: "/assets/images/fotoprojects/ppff.jpeg",
   profileImage: "/assets/images/fotoprojects/foto sendiiri.png",
@@ -183,7 +183,26 @@ export const portfolioData = {
       id: 4,
       title: "Aplikasi Money Tracking",
       description:
-        "Aplikasi ini dirancang untuk membantu pengguna melacak arus kas mereka sehari-hari. Pengguna dapat mencatat setiap uang yang masuk (pemasukan) dan uang yang keluar (pengeluaran) beserta kategorinya.",
+        "Aplikasi mobile pelacak keuangan pribadi untuk mencatat pemasukan dan pengeluaran harian secara digital.",
+      detailedDescription: {
+        overview:
+          "A personal finance tracking mobile application built using Flutter and Firebase to help users manage their daily income and expenses digitally. The application allows users to record financial transactions, categorize expenses, and monitor their financial activity through simple reports and summaries.",
+        role: "Mobile Developer",
+        responsibilities: [
+          "Building mobile UI components using Flutter and Material Design",
+          "Implementing user authentication (Register & Login) with Firebase Auth",
+          "Developing local database schema and logic using Drift (SQLite)",
+          "Managing transaction records and category filtering systems",
+          "Creating financial summary reports and data visualization",
+        ],
+        techStack: {
+          mobile_framework: ["Flutter", "Dart"],
+          backend_auth: ["Firebase Authentication"],
+          local_storage: ["Drift (SQLite)", "Shared Preferences"],
+          design_system: ["Material Design 3"],
+        },
+      },
+      technologies: ["Flutter", "Firebase Auth", "SQLite", "Drift", "Dart"],
       image: "/assets/images/fotoprojects/money-tracking/mt1.jpeg",
       images: [
         "/assets/images/fotoprojects/money-tracking/mt1.jpeg",
