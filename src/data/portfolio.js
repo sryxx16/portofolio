@@ -100,17 +100,74 @@ export const portfolioData = {
     {
       id: 1,
       title: "Website E-Commerce Jakarta Scootter Shop",
-      description: "Website toko online sperpart vespa clasic.",
+      // Deskripsi singkat untuk di Card
+      description:
+        "Platform E-Commerce Full-Stack untuk suku cadang Vespa klasik dengan integrasi pembayaran real-time.",
+      // Deskripsi lengkap untuk di Modal
+      detailedDescription: {
+        overview:
+          "A full-stack ecommerce web application developed using Next.js for the frontend and NestJS for the backend API. The system supports product management, shopping cart, order processing, and payment integration. This project was developed in a team of three developers, where I was responsible for the frontend development, implementing the user interface, managing client-side state, and integrating the frontend with the backend API. The application uses PostgreSQL with Prisma ORM for database management, while Redis is used to handle background jobs and queue processing. Tech Stack: Next.js, NestJS, TypeScript, PostgreSQL, Prisma, Redis, Tailwind CSS.",
+        responsibilities: [
+          "Implementing the user interface with Next.js & Tailwind CSS",
+          "Managing client-side state using Zustand",
+          "Integrating frontend with NestJS API using TanStack Query",
+          "Ensuring responsive design for mobile and desktop",
+        ],
+        techStack: {
+          frontend: [
+            "Next.js",
+            "TypeScript",
+            "Tailwind CSS",
+            "Zustand",
+            "TanStack Query",
+          ],
+          backend: ["NestJS", "TypeScript", "Prisma ORM"],
+          infrastructure: ["PostgreSQL", "Redis", "Docker"],
+        },
+      },
+      technologies: [
+        "Next.js 15",
+        "NestJS 11",
+        "PostgreSQL",
+        "Prisma ORM",
+        "Midtrans/Xendit",
+      ],
       image: "/assets/images/fotoprojects/Jakarta scooter shop.png",
       link: "https://jakartascootershop.com/",
       github: null,
-      type: "ecommerce",
+      type: "web app - ecommerce",
     },
     {
       id: 2,
       title: "Aplikasi Jastip Web",
       description:
-        "Sistem informasi layanan jasa titip yang telah terdaftar HKI. Memudahkan proses pemesanan secara terorganisir.",
+        "Platform penghubung antara pembeli dan traveler untuk layanan jasa titip barang antar kota/negara.",
+      detailedDescription: {
+        overview:
+          "A web platform built using Laravel that connects customers who want to buy items from other cities or countries with travelers who provide personal shopping services. The system manages order requests, service fees, payment tracking, and withdrawal processes for travelers. The platform includes three main roles: Customer, Traveler, and Admin. Customers can create orders and upload item details, travelers can accept requests and earn service fees, while admins manage platform operations through an admin dashboard built with Filament. The application uses Tailwind CSS and Blade templating for the frontend interface, while Livewire enables dynamic interactions in the admin panel without heavy JavaScript. This project was developed as part of a bootcamp team project, where our team successfully achieved 3rd place among dozens of participating teams.",
+        role: "Fullstack Developer (Team Project)",
+        // Bagian Prestasi
+        achievement:
+          "3rd Place Winner among dozens of teams in the IT Bootcamp Competition.",
+        responsibilities: [
+          "Developing core features for Customer and Traveler roles using Laravel",
+          "Implementing order request systems and payment tracking logic",
+          "Building a comprehensive admin dashboard using Filament PHP",
+          "Designing responsive frontend interfaces with Tailwind CSS and Blade",
+        ],
+        techStack: {
+          frontend: ["Tailwind CSS", "Blade Templating", "Livewire"],
+          backend: ["Laravel", "PHP", "MySQL"],
+          admin_panel: ["Filament PHP"],
+        },
+      },
+      technologies: [
+        "Laravel",
+        "Filament",
+        "Livewire",
+        "MySQL",
+        "Tailwind CSS",
+      ],
       image: "/assets/images/fotoprojects/jastip1.png",
       images: [
         "/assets/images/fotoprojects/jastip1.png",
@@ -121,16 +178,6 @@ export const portfolioData = {
       link: null,
       github: "https://github.com/sryxx16/project-jasa-titip.git",
       type: "webapp",
-    },
-    {
-      id: 3,
-      title: "Landing Page Kopi",
-      description:
-        "Desain landing page yang responsif dan menarik untuk sebuah kedai kopi fiktif.",
-      image: "https://via.placeholder.com/600x400",
-      link: "#",
-      github: "#",
-      type: "landing",
     },
     {
       id: 4,

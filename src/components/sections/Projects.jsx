@@ -28,7 +28,7 @@ export default function Projects() {
 
   return (
     <>
-      <section id="projects" className="py-24  relative overflow-hidden">
+      <section id="projects" className="py-24 relative overflow-hidden">
         {/* Ornamen Background */}
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
 
@@ -47,7 +47,7 @@ export default function Projects() {
             </div>
           </div>
 
-          {/* Wrapper Motion untuk Grid Kartu - Menggunakan Gap yang lebih besar */}
+          {/* Wrapper Motion untuk Grid Kartu */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -63,12 +63,8 @@ export default function Projects() {
                   index % 2 === 0
                     ? "md:justify-start"
                     : "md:justify-end md:ml-auto"
-                } ${index !== 0 ? "md:-mt-20" : ""}`} // Trik tumpang tindih (-mt-20)
-                onClick={() =>
-                  project.images
-                    ? setSelectedProject(project)
-                    : window.open(project.link)
-                }
+                } ${index !== 0 ? "md:-mt-20" : ""}`}
+                onClick={() => setSelectedProject(project)}
               >
                 {/* Kartu Project */}
                 <motion.div
@@ -80,7 +76,7 @@ export default function Projects() {
                   transition={{ type: "spring", stiffness: 200, damping: 20 }}
                   className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl cursor-pointer flex flex-col md:flex-row ring-1 ring-cyan-500/10 hover:ring-cyan-500/50 hover:shadow-cyan-500/10 transition-all duration-500 w-full"
                 >
-                  {/* Image Section - Setengah Kartu */}
+                  {/* Image Section */}
                   <div className="relative overflow-hidden h-60 md:h-auto md:w-2/5 flex-shrink-0">
                     <img
                       src={project.image}
@@ -90,48 +86,44 @@ export default function Projects() {
                     <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#0a0f1d] to-transparent opacity-60"></div>
                   </div>
 
-                  {/* Info Section - Setengah Kartu */}
+                  {/* Info Section */}
                   <div className="p-8 md:p-10 flex flex-col justify-center flex-grow">
                     {project.type && (
                       <span className="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-3 rounded-full bg-cyan-500/10 border border-cyan-500/20 px-4 py-1.5 self-start">
                         {project.type}
                       </span>
                     )}
-                    <h5 className="font-extrabold text-white mb-4 text-2xl md:text-3xl group-hover:text-cyan-400 transition-colors leading-tight">
+                    <h5 className="font-extrabold text-white mb-2 text-2xl md:text-3xl group-hover:text-cyan-400 transition-colors leading-tight">
                       {project.title}
                     </h5>
-                    <p className="text-gray-400 text-sm md:text-base mb-8 leading-relaxed line-clamp-3 md:line-clamp-none">
+
+                    {/* Deskripsi Singkat (Dibatasi 2 Baris) */}
+                    <p className="text-gray-400 text-sm md:text-base mb-4 leading-relaxed line-clamp-2">
                       {project.description}
                     </p>
 
+                    {/* Badge Teknologi Kecil */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.technologies?.map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="text-[10px] font-semibold bg-white/5 border border-white/10 text-gray-300 px-2 py-0.5 rounded-md uppercase tracking-wider group-hover:text-cyan-400 transition-colors"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Tombol Detail */}
                     <div className="flex gap-4 flex-wrap mt-auto">
-                      {project.link && (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="bg-cyan-500 text-gray-900 px-6 py-3 rounded-xl text-sm font-bold hover:bg-cyan-400 transition-all flex items-center gap-2 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40"
-                        >
-                          Live Demo <i className="bi bi-arrow-up-right"></i>
-                        </a>
-                      )}
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="bg-white/5 border border-white/10 text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-white/10 transition-all flex items-center gap-2"
-                        >
-                          <i className="bi bi-github"></i> Code
-                        </a>
-                      )}
+                      <button className="bg-cyan-500 text-gray-900 px-6 py-3 rounded-xl text-sm font-bold hover:bg-cyan-400 transition-all flex items-center gap-2 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40">
+                        Detail Project <i className="bi bi-eye"></i>
+                      </button>
                     </div>
                   </div>
                 </motion.div>
 
-                {/* Angka Project Transparan di Belakang (Opsional biar artistik) */}
+                {/* Angka Project Transparan */}
                 <span className="absolute -bottom-10 -left-10 text-[10rem] font-black text-white/5 pointer-events-none group-hover:text-cyan-500/10 transition-colors hidden md:block z-0">
                   0{index + 1}
                 </span>
