@@ -132,7 +132,7 @@ export default function About() {
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href="#"
+                href="/New CV Surya Daffa.pdf"
                 className="inline-flex items-center gap-3 bg-cyan-500 text-gray-900 px-8 py-4 rounded-2xl font-bold hover:bg-cyan-400 transition-colors duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]"
               >
                 <i className="bi bi-cloud-arrow-down-fill text-xl"></i> Download

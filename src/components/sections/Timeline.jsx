@@ -30,11 +30,11 @@ export default function Timeline() {
       icon: "bi-cart-fill",
     },
     {
-      year: "2022 - 2023",
-      title: "IT Bootcamp Participant",
+      year: "2025 - 2026",
+      title: "Web Development Training – Coding Studio",
       company: "Coding Studio & Pelatihan Lainnya",
       description:
-        "Mengasah skill praktikal dalam Web Development menggunakan stack modern.",
+        "Mengikuti pelatihan Web Development untuk meningkatkan pemahaman dalam pengembangan website, termasuk praktik pembuatan project menggunakan teknologi web modern.",
       icon: "bi-laptop",
     },
   ];
