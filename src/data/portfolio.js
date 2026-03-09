@@ -6,8 +6,8 @@ export const portfolioData = {
   about:
     " Saya adalah mahasiswa IT semester 6 yang memiliki ketertarikan di bidang Web Development dan Software Development. Terbiasa membangun aplikasi web menggunakan Laravel dan JavaScript serta memahami konsep dasar backend, database, dan logika aplikasi. Saya lebih sering mengembangkan kemampuan melalui pembuatan project nyata, baik secara mandiri maupun dalam tim, seperti platform ecommerce dan sistem jasa titip. Saat ini saya terus belajar dan terbuka untuk freelance, remote work, maupun kolaborasi project dalam membangun solusi digital yang fungsional dan mudah dikembangkan. Saya percaya cara terbaik belajar programming adalah dengan membangun project nyata dan terus mengembangkan solusi dari masalah yang ada.",
 
-  profileImage1: "/assets/images/fotoprojects/ppff.jpeg",
-  profileImage: "/assets/images/fotoprojects/foto sendiiri.png",
+  profileImage1: "/assets/images/fotoprojects/fotoprofile3.png",
+  profileImage: "/assets/images/fotoprojects/fotoprofile2.png",
 
   skills: [
     {

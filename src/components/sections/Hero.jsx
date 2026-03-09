@@ -12,14 +12,12 @@ export default function Hero() {
     "fullstack developer",
   ];
 
-  // State untuk menjejak indeks role yang sedang dipaparkan
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
 
-  // useEffect untuk menukar role setiap 3 saat secara automatik
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentRoleIndex((prevIndex) => (prevIndex + 1) % roles.length);
-    }, 3000); // 3000ms = 3 saat
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [roles.length]);
@@ -47,7 +45,6 @@ export default function Hero() {
                   className="text-3xl md:text-6xl font-black text-white mb-6 leading-tight"
                 />
 
-                {/* ANIMASI TEKS BERTERUSAN (ROTATING TEXT) */}
                 <div className="flex items-center gap-3 mb-8 h-8 md:h-10">
                   <span className="text-gray-400 font-mono text-sm md:text-base">
                     Specialized in:
@@ -73,7 +70,6 @@ export default function Hero() {
                   className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-xl"
                 />
 
-                {/* BAGIAN SOSMED */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -106,7 +102,6 @@ export default function Hero() {
                   </a>
                 </motion.div>
 
-                {/* Tombol Utama */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -131,7 +126,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* BAGIAN KANAN: LANYARD (RESPONSIVE) */}
+          {/* BAGIAN KANAN: LANYARD (MODIFIED TO FULL CARD PHOTO) */}
           <div
             className="w-full md:w-5/12 flex justify-center md:justify-end mt-8 md:mt-0"
             data-aos="fade-left"
@@ -143,34 +138,40 @@ export default function Hero() {
 
               <div className="relative w-64 md:w-80 h-[400px] md:h-[450px] perspective-1000 z-10 pt-2">
                 <TiltCard>
-                  <div className="w-full h-full bg-[#020617] rounded-2xl border border-white/20 p-4 md:p-5 flex flex-col items-center justify-between shadow-2xl relative overflow-hidden">
-                    <div className="w-full flex justify-between items-start z-10 mb-4">
-                      <span className="text-[8px] md:text-[10px] font-black text-white/50 tracking-[0.2em] uppercase">
+                  <div className="w-full h-full bg-[#020617] rounded-2xl border border-white/20 flex flex-col items-center justify-between shadow-2xl relative overflow-hidden">
+                    {/* FOTO FULL CARD SEBAGAI BACKGROUND */}
+                    <div className="absolute inset-0 z-0">
+                      <img
+                        src={portfolioData.profileImage1}
+                        alt={portfolioData.name}
+                        className="w-full h-full object-cover object-top opacity-60 group-hover:scale-110 transition-transform duration-700"
+                      />
+                      {/* Gradient Overlay agar teks tetap terbaca */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/20 to-transparent"></div>
+                    </div>
+
+                    {/* Konten Atas Kad */}
+                    <div className="w-full flex justify-between items-start z-10 p-4 md:p-5 mb-4">
+                      <span className="text-[8px] md:text-[10px] font-black text-white/70 tracking-[0.2em] uppercase">
                         ACCESS LEVEL:{" "}
                         <span className="text-cyan-400">ADMIN</span>
                       </span>
-                      <i className="bi bi-qr-code text-white/40 text-xl md:text-2xl"></i>
+                      <i className="bi bi-qr-code text-white/60 text-xl md:text-2xl"></i>
                     </div>
 
-                    <div className="relative w-36 h-36 md:w-48 md:h-48 rounded-full z-10 border-4 border-[#0a0f1d] shadow-[0_0_30px_rgba(6,182,212,0.4)] mb-4">
-                      <div className="w-full h-full rounded-full overflow-hidden bg-[#0a0f1d] relative">
-                        <img
-                          src={portfolioData.profileImage1}
-                          alt={portfolioData.name}
-                          className="w-full h-full object-cover object-top scale-105 group-hover:scale-115 transition-transform duration-700"
-                        />
-                      </div>
-                    </div>
+                    {/* Spacer untuk menolak teks ke bawah karena foto sudah full background */}
+                    <div className="flex-grow"></div>
 
-                    <div className="w-full text-center z-10 flex-grow flex flex-col justify-end pb-2">
-                      <h2 className="text-xl md:text-2xl font-black text-white tracking-widest uppercase mb-1">
+                    {/* Konten Bawah Kad */}
+                    <div className="w-full text-center z-10 p-4 md:p-5 pb-6">
+                      <h2 className="text-xl md:text-2xl font-black text-white tracking-widest uppercase mb-1 drop-shadow-lg">
                         SURYA
                       </h2>
                       <p className="text-cyan-400 text-[10px] md:text-xs font-bold tracking-[0.15em] mb-4">
                         FULLSTACK DEVELOPER
                       </p>
 
-                      <div className="w-full h-6 bg-white/5 border-y border-white/10 flex items-center justify-center gap-1 overflow-hidden">
+                      <div className="w-full h-6 bg-white/5 border-y border-white/10 flex items-center justify-center gap-1 overflow-hidden backdrop-blur-sm">
                         {[...Array(20)].map((_, i) => (
                           <div
                             key={i}
@@ -180,6 +181,7 @@ export default function Hero() {
                       </div>
                     </div>
 
+                    {/* Garis Animasi Scanning */}
                     <motion.div
                       animate={{ top: ["0%", "100%", "0%"] }}
                       transition={{
@@ -191,6 +193,7 @@ export default function Hero() {
                     ></motion.div>
                   </div>
 
+                  {/* Badge "Available" di Luar Kad */}
                   <motion.div
                     animate={{ y: [0, -5, 0] }}
                     transition={{

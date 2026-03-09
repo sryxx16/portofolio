@@ -1,17 +1,15 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+// Pastikan path ini benar sesuai lokasi file Navbar.jsx kamu
+import { portfolioData } from "../data/portfolio";
+import { motion, AnimatePresence } from "framer-motion";
 
-const Navbar = () => {
+export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Deteksi scroll untuk mengubah background navbar
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -21,92 +19,93 @@ const Navbar = () => {
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Projects", href: "#projects" },
-    { name: "Certificates", href: "#certificates" },
+    { name: "Certificates", href: "#certificates" }, // Penambahan Certificates
     { name: "Contact", href: "#contact" },
   ];
 
-  // Fungsi untuk Smooth Scroll
-  const handleSmoothScroll = (e, href) => {
-    e.preventDefault(); // Mencegah lompatan instan bawaan HTML
-    const targetId = href.replace("#", "");
-    const elem = document.getElementById(targetId);
-
-    if (elem) {
-      // Menghitung posisi elemen dikurangi tinggi navbar (sekitar 80px) agar tidak tertutup
-      const offsetTop = elem.getBoundingClientRect().top + window.scrollY - 80;
-
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      });
-    }
-    setIsOpen(false); // Otomatis tutup menu mobile kalau link diklik
-  };
-
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-500 py-4 border-b ${
-        isScrolled
-          ? "bg-[#0a0f1d]/80 border-white/10 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.1)]"
-          : "bg-transparent border-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-6 flex justify-between items-center">
-        <a
-          href="#home"
-          onClick={(e) => handleSmoothScroll(e, "#home")}
-          className="text-2xl font-black tracking-tighter text-white hover:text-cyan-400 transition-colors cursor-pointer"
-        >
-          SURYA<span className="text-cyan-500">.</span>
+    <nav className="fixed top-0 left-0 right-0 z-[100] transition-all duration-500 flex justify-center pt-6">
+      <div
+        className={`
+          transition-all duration-500 px-6 py-3 rounded-full flex items-center gap-8
+          ${
+            isScrolled
+              ? "bg-[#020617]/70 backdrop-blur-xl border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.3)] w-[90%] md:w-auto"
+              : "bg-transparent w-[95%] md:w-auto"
+          }
+        `}
+      >
+        <a href="#home" className="flex items-center gap-2 group">
+          <div className="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center font-black text-gray-900 transition-transform group-hover:rotate-12">
+            S
+          </div>
+          <span className="text-white font-bold tracking-tighter hidden sm:block">
+            SURYA<span className="text-cyan-400">.DEV</span>
+          </span>
         </a>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-gray-300">
+        <div className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              onClick={(e) => handleSmoothScroll(e, link.href)}
-              className="hover:text-cyan-400 transition-colors duration-300 relative group cursor-pointer"
+              className="text-gray-400 hover:text-cyan-400 text-sm font-medium transition-colors relative group"
             >
               {link.name}
-              {/* Animasi garis bawah saat di-hover biar premium */}
-              <span className="absolute -bottom-1.5 left-0 w-0 h-[2px] bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
         </div>
 
-        {/* Mobile Menu Button */}
+        <div className="hidden md:block">
+          <a
+            href={portfolioData.resumeUrl || "#"}
+            className="px-5 py-2 bg-white/5 hover:bg-cyan-500 hover:text-gray-900 border border-white/10 hover:border-cyan-500 rounded-full text-xs font-bold text-white transition-all duration-300"
+          >
+            LET'S TALK
+          </a>
+        </div>
+
         <button
-          className="md:hidden text-2xl text-white focus:outline-none hover:text-cyan-400 transition-colors"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
+          className="md:hidden text-white ml-auto"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isOpen ? "✕" : "☰"}
+          <i
+            className={`bi ${isMobileMenuOpen ? "bi-x-lg" : "bi-grid-3x3-gap-fill"} text-xl`}
+          ></i>
         </button>
       </div>
 
-      {/* Mobile Menu Dropdown (Dibuat lebih smooth transisinya) */}
-      <div
-        className={`md:hidden absolute top-full left-0 w-full bg-[#0a0f1d]/95 backdrop-blur-xl border-b border-white/10 transition-all duration-300 overflow-hidden ${
-          isOpen ? "max-h-96 py-6 opacity-100" : "max-h-0 py-0 opacity-0"
-        }`}
-      >
-        <div className="container mx-auto px-6 flex flex-col gap-6 font-bold uppercase text-sm text-gray-300 tracking-wider">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => handleSmoothScroll(e, link.href)}
-              className="hover:text-cyan-400 hover:translate-x-2 transition-all duration-300 cursor-pointer"
-            >
-              {link.name}
-            </a>
-          ))}
-        </div>
-      </div>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-24 left-6 right-6 bg-[#020617]/95 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 md:hidden z-[99]"
+          >
+            <div className="flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-cyan-400 text-lg font-semibold py-2 border-b border-white/5"
+                >
+                  {link.name}
+                </a>
+              ))}
+              <a
+                href="#contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="mt-4 w-full py-4 bg-cyan-500 text-gray-900 rounded-2xl font-bold text-center"
+              >
+                Hire Me
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
-};
-
-export default Navbar;
+}

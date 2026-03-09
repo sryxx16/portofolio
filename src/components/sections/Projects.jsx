@@ -7,33 +7,30 @@ import AnimatedText from "../animations/AnimatedText";
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
 
-  // Variasi animasi untuk memunculkan container
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.3 },
+      transition: { staggerChildren: 0.2 },
     },
   };
 
-  // Variasi animasi untuk kartu (muncul pelan dari bawah)
   const cardVariants = {
-    hidden: { y: 60, opacity: 0 },
+    hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { type: "spring", stiffness: 70, damping: 15 },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
   return (
     <>
       <section id="projects" className="py-24 relative overflow-hidden">
-        {/* Ornamen Background */}
-        <div className="absolute top-1/2 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-[120px] pointer-events-none"></div>
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center mb-20">
+          <div className="text-center mb-16">
             <h6 className="text-cyan-400 tracking-[0.2em] text-sm font-bold mb-3 flex items-center justify-center gap-2">
               <span className="w-8 h-[2px] bg-cyan-400"></span>
               FEATURED WORK
@@ -47,86 +44,76 @@ export default function Projects() {
             </div>
           </div>
 
-          {/* Wrapper Motion untuk Grid Kartu */}
+          {/* Grid Layout Baru: 1 kolom di mobile, 2 di tablet, 3 di desktop */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="flex flex-col gap-16 md:gap-0 relative"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {portfolioData.projects.map((project, index) => (
+            {portfolioData.projects.map((project) => (
               <motion.div
                 key={project.id}
                 variants={cardVariants}
-                className={`relative w-full md:w-[60%] flex group ${
-                  index % 2 === 0
-                    ? "md:justify-start"
-                    : "md:justify-end md:ml-auto"
-                } ${index !== 0 ? "md:-mt-20" : ""}`}
+                className="group relative"
                 onClick={() => setSelectedProject(project)}
               >
-                {/* Kartu Project */}
-                <motion.div
-                  whileHover={{
-                    scale: 1.03,
-                    zIndex: 20,
-                    y: -10,
-                  }}
-                  transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                  className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl cursor-pointer flex flex-col md:flex-row ring-1 ring-cyan-500/10 hover:ring-cyan-500/50 hover:shadow-cyan-500/10 transition-all duration-500 w-full"
-                >
-                  {/* Image Section */}
-                  <div className="relative overflow-hidden h-60 md:h-auto md:w-2/5 flex-shrink-0">
+                <div className="h-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden hover:border-cyan-500/50 transition-all duration-500 cursor-pointer flex flex-col shadow-xl hover:shadow-cyan-500/10">
+                  {/* Image Container */}
+                  <div className="relative h-52 overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#0a0f1d] to-transparent opacity-60"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1d] via-transparent to-transparent opacity-80"></div>
+
+                    {/* Type Badge di atas gambar */}
+                    {project.type && (
+                      <div className="absolute top-4 left-4">
+                        <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-widest bg-[#0a0f1d]/80 backdrop-blur-md border border-cyan-500/20 px-3 py-1 rounded-full">
+                          {project.type}
+                        </span>
+                      </div>
+                    )}
                   </div>
 
-                  {/* Info Section */}
-                  <div className="p-8 md:p-10 flex flex-col justify-center flex-grow">
-                    {project.type && (
-                      <span className="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-3 rounded-full bg-cyan-500/10 border border-cyan-500/20 px-4 py-1.5 self-start">
-                        {project.type}
-                      </span>
-                    )}
-                    <h5 className="font-extrabold text-white mb-2 text-2xl md:text-3xl group-hover:text-cyan-400 transition-colors leading-tight">
+                  {/* Content Container */}
+                  <div className="p-6 flex flex-col flex-grow">
+                    <h5 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
                       {project.title}
                     </h5>
 
-                    {/* Deskripsi Singkat (Dibatasi 2 Baris) */}
-                    <p className="text-gray-400 text-sm md:text-base mb-4 leading-relaxed line-clamp-2">
+                    <p className="text-gray-400 text-sm line-clamp-3 mb-6 flex-grow">
                       {project.description}
                     </p>
 
-                    {/* Badge Teknologi Kecil */}
+                    {/* Tech Stack */}
                     <div className="flex flex-wrap gap-2 mb-6">
-                      {project.technologies?.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="text-[10px] font-semibold bg-white/5 border border-white/10 text-gray-300 px-2 py-0.5 rounded-md uppercase tracking-wider group-hover:text-cyan-400 transition-colors"
-                        >
-                          {tech}
+                      {project.technologies
+                        ?.slice(0, 3)
+                        .map((tech, techIndex) => (
+                          <span
+                            key={techIndex}
+                            className="text-[9px] font-medium bg-cyan-500/5 border border-cyan-500/10 text-cyan-300/80 px-2 py-0.5 rounded uppercase"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      {project.technologies?.length > 3 && (
+                        <span className="text-[9px] text-gray-500">
+                          +{project.technologies.length - 3}
                         </span>
-                      ))}
+                      )}
                     </div>
 
-                    {/* Tombol Detail */}
-                    <div className="flex gap-4 flex-wrap mt-auto">
-                      <button className="bg-cyan-500 text-gray-900 px-6 py-3 rounded-xl text-sm font-bold hover:bg-cyan-400 transition-all flex items-center gap-2 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40">
-                        Detail Project <i className="bi bi-eye"></i>
-                      </button>
-                    </div>
+                    <button className="w-full py-3 bg-white/5 border border-white/10 hover:bg-cyan-500 hover:text-gray-900 hover:border-cyan-500 rounded-xl text-xs font-bold transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+                      DETAIL PROJECT
+                      <i className="bi bi-arrow-up-right group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform"></i>
+                    </button>
                   </div>
-                </motion.div>
-
-                {/* Angka Project Transparan */}
-                <span className="absolute -bottom-10 -left-10 text-[10rem] font-black text-white/5 pointer-events-none group-hover:text-cyan-500/10 transition-colors hidden md:block z-0">
-                  0{index + 1}
-                </span>
+                </div>
               </motion.div>
             ))}
           </motion.div>
