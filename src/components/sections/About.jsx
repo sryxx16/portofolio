@@ -18,15 +18,15 @@ export default function About() {
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
           {/* BAGIAN KIRI: FOTO & FLOATING CARDS */}
           <div
             data-aos="fade-right"
-            className="relative w-full flex justify-center items-center h-[400px] md:h-[500px]"
+            className="relative w-full flex justify-center items-center h-[450px] md:h-[550px]"
           >
-            <div className="absolute bg-cyan-500/20 w-64 h-64 md:w-80 md:h-80 rounded-full blur-[60px] animate-pulse"></div>
+            <div className="absolute bg-cyan-500/20 w-72 h-72 md:w-96 md:h-96 rounded-full blur-[60px] animate-pulse"></div>
 
-            <div className="relative w-56 h-72 md:w-64 md:h-80 z-10 rounded-2xl md:rounded-3xl overflow-hidden border border-white/20 shadow-[0_0_40px_rgba(6,182,212,0.3)]">
+            <div className="relative w-72 h-[360px] md:w-80 md:h-[420px] z-10 rounded-2xl md:rounded-3xl overflow-hidden border border-white/20 shadow-[0_0_40px_rgba(6,182,212,0.3)]">
               <img
                 src={portfolioData.profileImage}
                 alt="About Me"
@@ -38,7 +38,7 @@ export default function About() {
             <motion.div
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-10 md:top-16 left-0 md:-left-4 z-20 bg-[#0a0f1d]/80 backdrop-blur-md border border-white/10 p-3 md:p-4 rounded-xl shadow-xl flex items-center gap-3 md:gap-4"
+              className="absolute top-4 md:top-8 left-2 md:left-0 z-20 bg-[#0a0f1d]/80 backdrop-blur-md border border-white/10 p-3 md:p-4 rounded-xl shadow-xl flex items-center gap-3 md:gap-4"
             >
               <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center text-white shadow-lg">
                 <i className="bi bi-briefcase-fill text-lg md:text-xl"></i>
@@ -61,7 +61,7 @@ export default function About() {
                 ease: "easeInOut",
                 delay: 1,
               }}
-              className="absolute bottom-10 md:bottom-16 right-0 md:-right-8 z-20 bg-[#0a0f1d]/80 backdrop-blur-md border border-white/10 p-3 md:p-4 rounded-xl shadow-xl flex items-center gap-3"
+              className="absolute bottom-4 md:bottom-8 right-2 md:right-0 z-20 bg-[#0a0f1d]/80 backdrop-blur-md border border-white/10 p-3 md:p-4 rounded-xl shadow-xl flex items-center gap-3"
             >
               <div className="flex -space-x-3">
                 <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#1e293b] border-2 border-[#0a0f1d] flex items-center justify-center text-cyan-400">

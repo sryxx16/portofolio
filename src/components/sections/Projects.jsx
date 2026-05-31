@@ -30,7 +30,7 @@ export default function Projects() {
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-[120px] pointer-events-none"></div>
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h6 className="text-cyan-400 tracking-[0.2em] text-sm font-bold mb-3 flex items-center justify-center gap-2">
               <span className="w-8 h-[2px] bg-cyan-400"></span>
               FEATURED WORK

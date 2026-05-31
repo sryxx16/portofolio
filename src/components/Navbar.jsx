@@ -40,7 +40,7 @@ export default function Navbar() {
             S
           </div>
           <span className="text-white font-bold tracking-tighter hidden sm:block">
-            SURYA<span className="text-cyan-400">.DEV</span>
+            SURYA<span className="text-cyan-400">.DEVz</span>
           </span>
         </a>
 

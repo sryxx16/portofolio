@@ -28,7 +28,9 @@ export default function Hero() {
       className="min-h-screen flex items-center bg-transparent pt-20 pb-10 overflow-hidden relative"
     >
       <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+        {/* REVISI: Menggunakan justify-center dengan gap sedang agar pas di tengah */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-16 lg:gap-24">
+
           {/* BAGIAN KIRI: TEKS & TOMBOL */}
           <div className="w-full md:w-6/12" data-aos="fade-right">
             <div className="bg-[#020617]/80 backdrop-blur-lg border border-white/10 p-6 md:p-12 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
@@ -127,8 +129,9 @@ export default function Hero() {
           </div>
 
           {/* BAGIAN KANAN: LANYARD (MODIFIED TO FULL CARD PHOTO) */}
+          {/* REVISI: Kembali pakai justify-center agar mengikuti gap dari parent */}
           <div
-            className="w-full md:w-5/12 flex justify-center md:justify-end mt-8 md:mt-0"
+            className="w-full md:w-5/12 flex justify-center mt-8 md:mt-0"
             data-aos="fade-left"
           >
             <div className="relative group flex justify-center w-full max-w-sm">

@@ -45,7 +45,7 @@ export default function Timeline() {
       className="py-24 bg-[#0a0f1d] border-t border-white/5 relative z-10"
     >
       <div className="container mx-auto px-6">
-        <div className="text-center mb-20">
+        <div className="text-center mb-14">
           <h6 className="text-cyan-400 tracking-[0.2em] text-sm font-bold mb-3 flex items-center justify-center gap-2">
             <span className="w-8 h-[2px] bg-cyan-400"></span>
             JOURNEY
@@ -71,7 +71,7 @@ export default function Timeline() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className={`relative flex items-start justify-between mb-12 ${
+              className={`relative flex items-start justify-between mb-8 ${
                 index % 2 === 0 ? "md:flex-row-reverse" : "md:flex-row"
               } flex-row`}
             >

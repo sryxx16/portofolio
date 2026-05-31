@@ -1,8 +1,17 @@
 @import "tailwindcss";
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
     @apply font-sans antialiased;
     font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /* Prevent sections from being hidden behind the fixed navbar */
+  section[id] {
+    scroll-margin-top: 5rem;
   }
 }
